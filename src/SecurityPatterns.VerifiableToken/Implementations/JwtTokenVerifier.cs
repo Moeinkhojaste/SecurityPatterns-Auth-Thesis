@@ -29,7 +29,7 @@ namespace SecurityPatterns.VerifiableToken.Implementations;
 ///     <strong>CVE-2015-9235 (JWT "none" algorithm):</strong>
 ///     <c>RequireSignedTokens</c> is <see langword="true"/> and
 ///     <c>ValidAlgorithms</c> is restricted to
-///     <see cref="SecurityAlgorithms.HmacSha256Signature"/> only. Tokens with the
+    /// <see cref="SecurityAlgorithms.HmacSha256"/> only. Tokens with the
 ///     <c>none</c> algorithm or any non-HS256 algorithm are rejected outright.
 ///   </item>
 ///   <item>
@@ -105,13 +105,23 @@ public sealed class JwtTokenVerifier : ITokenVerifier
                 nameof(secretKey));
         }
 
-        var securityKey = new SymmetricSecurityKey(keyBytes);
+        var securityKey = new SymmetricSecurityKey(keyBytes)
+        {
+            // Must match the KeyId set on the issuer's signing key so that
+            // IdentityModel 8.x can resolve the key by "kid" in the JWT header.
+            KeyId = "signing-key-1"
+        };
 
         _validationParameters = new TokenValidationParameters
         {
             // --- Signature validation (CWE-347) ---
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = securityKey,
+
+            // --- Key resolver: return our key for any token, regardless of kid ---
+            // Microsoft.IdentityModel 8.x requires this to resolve keys when
+            // the token header does not include a "kid" claim.
+            IssuerSigningKeyResolver = (_, _, _, _) => [securityKey],
 
             // --- Issuer & audience validation (CWE-287) ---
             ValidateIssuer = true,
@@ -125,16 +135,15 @@ public sealed class JwtTokenVerifier : ITokenVerifier
 
             // --- Algorithm whitelist (CVE-2015-9235) ---
             RequireSignedTokens = true,
-            ValidAlgorithms = [SecurityAlgorithms.HmacSha256Signature],
+            ValidAlgorithms = [SecurityAlgorithms.HmacSha256],
         };
 
         _tokenHandler = new JwtSecurityTokenHandler();
 
-        // Prevent the token handler from remapping claim types so that raw JWT
-        // claim names (sub, jti, unique_name, etc.) are preserved in the
-        // extracted claims dictionary.
-        _tokenHandler.InboundClaimTypeMap.Clear();
-        _tokenHandler.OutboundClaimTypeMap.Clear();
+        // Disable inbound claim mapping so that raw JWT claim names (sub, jti,
+        // unique_name, etc.) are preserved in the extracted claims dictionary.
+        // MapInboundClaims = false is the correct .NET API for this.
+        _tokenHandler.MapInboundClaims = false;
     }
 
     /// <inheritdoc />

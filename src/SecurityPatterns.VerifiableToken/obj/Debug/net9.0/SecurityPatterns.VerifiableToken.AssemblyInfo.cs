@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SecurityPatterns.VerifiableToken")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9afc1c5648384480008f49192cba492baf07e509")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3019b15e322f2160bc32983afa7adb254ab2cf71")]
 [assembly: System.Reflection.AssemblyProductAttribute("SecurityPatterns.VerifiableToken")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SecurityPatterns.VerifiableToken")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

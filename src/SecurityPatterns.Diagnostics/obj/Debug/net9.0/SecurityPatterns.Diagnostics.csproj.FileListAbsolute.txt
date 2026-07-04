@@ -19,3 +19,11 @@ D:\Lessons\University\Not done yet!!\Bachelor Project\SecurityPatterns.Solution\
 D:\Lessons\University\Not done yet!!\Bachelor Project\SecurityPatterns.Solution\src\SecurityPatterns.Diagnostics\obj\Debug\net9.0\SecurityPatterns.Diagnostics.pdb
 D:\Lessons\University\Not done yet!!\Bachelor Project\SecurityPatterns.Solution\src\SecurityPatterns.Diagnostics\obj\Debug\net9.0\SecurityPatterns.Diagnostics.genruntimeconfig.cache
 D:\Lessons\University\Not done yet!!\Bachelor Project\SecurityPatterns.Solution\src\SecurityPatterns.Diagnostics\obj\Debug\net9.0\ref\SecurityPatterns.Diagnostics.dll
+D:\Lessons\University\Not done yet!!\Bachelor Project\SecurityPatterns.Solution\src\SecurityPatterns.Diagnostics\bin\Debug\net9.0\Microsoft.Bcl.Cryptography.dll
+D:\Lessons\University\Not done yet!!\Bachelor Project\SecurityPatterns.Solution\src\SecurityPatterns.Diagnostics\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Lessons\University\Not done yet!!\Bachelor Project\SecurityPatterns.Solution\src\SecurityPatterns.Diagnostics\bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Lessons\University\Not done yet!!\Bachelor Project\SecurityPatterns.Solution\src\SecurityPatterns.Diagnostics\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Lessons\University\Not done yet!!\Bachelor Project\SecurityPatterns.Solution\src\SecurityPatterns.Diagnostics\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Lessons\University\Not done yet!!\Bachelor Project\SecurityPatterns.Solution\src\SecurityPatterns.Diagnostics\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
+D:\Lessons\University\Not done yet!!\Bachelor Project\SecurityPatterns.Solution\src\SecurityPatterns.Diagnostics\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
+D:\Lessons\University\Not done yet!!\Bachelor Project\SecurityPatterns.Solution\src\SecurityPatterns.Diagnostics\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll

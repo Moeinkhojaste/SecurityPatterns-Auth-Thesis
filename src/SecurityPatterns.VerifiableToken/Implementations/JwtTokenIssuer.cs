@@ -13,7 +13,7 @@ namespace SecurityPatterns.VerifiableToken.Implementations;
 /// <remarks>
 /// <para>
 /// This implementation binds the token-signing pipeline to a symmetric key and
-/// <see cref="SecurityAlgorithms.HmacSha256Signature"/> at construction time,
+/// <see cref="SecurityAlgorithms.HmacSha256"/> at construction time,
 /// directly mitigating:
 /// </para>
 /// <list type="bullet">
@@ -91,16 +91,21 @@ public sealed class JwtTokenIssuer : ITokenIssuer
                 nameof(secretKey));
         }
 
-        var securityKey = new SymmetricSecurityKey(keyBytes);
-        _signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
+        var securityKey = new SymmetricSecurityKey(keyBytes)
+        {
+            // Assign a deterministic key ID so the JWT header's "kid" claim can
+            // be matched by the verifier during signature validation.
+            KeyId = "signing-key-1"
+        };
+        _signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
         _issuer = issuer;
         _audience = audience;
 
         _tokenHandler = new JwtSecurityTokenHandler();
 
-        // Prevent the token handler from using default inbound/outbound mapping
-        // that could inadvertently alter claim types.
-        _tokenHandler.InboundClaimTypeMap.Clear();
+        // Prevent the token handler from remapping claim types when writing the
+        // token, so that raw JWT claim names (sub, jti, unique_name, etc.) are
+        // preserved in the serialized output.
         _tokenHandler.OutboundClaimTypeMap.Clear();
     }
 
@@ -162,6 +167,10 @@ public sealed class JwtTokenIssuer : ITokenIssuer
         };
 
         JwtSecurityToken securityToken = _tokenHandler.CreateJwtSecurityToken(tokenDescriptor);
+
+        // Set kid header so the verifier can match the signing key (IdentityModel 8.x requirement).
+        securityToken.Header[JwtHeaderParameterNames.Kid] = _signingCredentials.Key.KeyId;
+
         string serializedToken = _tokenHandler.WriteToken(securityToken);
 
         return new TokenResult(serializedToken, tokenId, expiresAt);

@@ -1,4 +1,3 @@
-using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -32,7 +31,7 @@ builder.Services.AddScoped<IAuthService>(sp =>
 });
 
 // ─── Authentication (JWT Bearer) ────────────────────────────────────────
-byte[] keyBytes = Encoding.UTF8.GetBytes(secretKey);
+byte[] keyBytes = Convert.FromBase64String(secretKey);
 
 builder.Services.AddAuthentication(options =>
 {
@@ -41,6 +40,10 @@ builder.Services.AddAuthentication(options =>
 })
 .AddJwtBearer(options =>
 {
+    // Disable claim mapping so raw JWT claim names (sub, unique_name, jti, etc.)
+    // are preserved, matching the behaviour of JwtTokenVerifier.MapInboundClaims = false.
+    options.MapInboundClaims = false;
+
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuerSigningKey = true,

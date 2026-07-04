@@ -1,0 +1,28 @@
+## Build outputs
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+
+## Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## Build results
+*.dll
+*.pdb
+*.exe
+*.cache
+
+## NuGet
+packages/
+*.nupkg
+project.nuget.cache
+project.assets.json
+
+## Rider / JetBrains
+.idea/
+*.sln.iml

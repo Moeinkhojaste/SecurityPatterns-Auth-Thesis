@@ -1,11 +1,48 @@
 {
   "version": 3,
   "targets": {
-    "net9.0": {}
+    "net9.0": {
+      "SecurityPatterns.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/SecurityPatterns.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SecurityPatterns.Core.dll": {}
+        }
+      },
+      "SecurityPatterns.VerifiableToken/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "SecurityPatterns.Core": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/SecurityPatterns.VerifiableToken.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SecurityPatterns.VerifiableToken.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "SecurityPatterns.Core/1.0.0": {
+      "type": "project",
+      "path": "../SecurityPatterns.Core/SecurityPatterns.Core.csproj",
+      "msbuildProject": "../SecurityPatterns.Core/SecurityPatterns.Core.csproj"
+    },
+    "SecurityPatterns.VerifiableToken/1.0.0": {
+      "type": "project",
+      "path": "../SecurityPatterns.VerifiableToken/SecurityPatterns.VerifiableToken.csproj",
+      "msbuildProject": "../SecurityPatterns.VerifiableToken/SecurityPatterns.VerifiableToken.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net9.0": []
+    "net9.0": [
+      "SecurityPatterns.VerifiableToken >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Moein Khm\\.nuget\\packages\\": {},
@@ -38,7 +75,11 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Lessons\\University\\Not done yet!!\\Bachelor Project\\SecurityPatterns.Solution\\src\\SecurityPatterns.VerifiableToken\\SecurityPatterns.VerifiableToken.csproj": {
+              "projectPath": "D:\\Lessons\\University\\Not done yet!!\\Bachelor Project\\SecurityPatterns.Solution\\src\\SecurityPatterns.VerifiableToken\\SecurityPatterns.VerifiableToken.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net9.0": {}
+    "net9.0": {
+      "SecurityPatterns.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/SecurityPatterns.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SecurityPatterns.Core.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "SecurityPatterns.Core/1.0.0": {
+      "type": "project",
+      "path": "../SecurityPatterns.Core/SecurityPatterns.Core.csproj",
+      "msbuildProject": "../SecurityPatterns.Core/SecurityPatterns.Core.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net9.0": []
+    "net9.0": [
+      "SecurityPatterns.Core >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Moein Khm\\.nuget\\packages\\": {},
@@ -38,7 +57,11 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Lessons\\University\\Not done yet!!\\Bachelor Project\\SecurityPatterns.Solution\\src\\SecurityPatterns.Core\\SecurityPatterns.Core.csproj": {
+              "projectPath": "D:\\Lessons\\University\\Not done yet!!\\Bachelor Project\\SecurityPatterns.Solution\\src\\SecurityPatterns.Core\\SecurityPatterns.Core.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
